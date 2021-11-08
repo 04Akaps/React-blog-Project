@@ -5,5 +5,16 @@ css, 레이아웃 구조, DB연결
 - 스스로 작업
 
 사용한 모듈
-- redux, bodyParser, express, router-dom, @material-ui/core 등등
+- redux, bodyParser, express, router-dom, @material-ui/core, axios 등등
 
+과정 정리한 블로그
+- https://velog.io/@jjimgo?tag=React-개인-
+
+DB
+- MongoDB
+
+- React, Node.js
+
+
+배경색
+- https://www.svgbackgrounds.com/
