@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+
 import PostMessage from "../models/postMessage.js";
 
 export const getPosts = async (req, res) => {
@@ -32,6 +33,36 @@ export const updatePost = async (req, res) => {
     const updatedPost = await PostMessage.findByIdAndUpdate(_id, post, {
       new: true,
     });
+    res.json(updatedPost);
+  }
+};
+
+export const deletePost = async (req, res) => {
+  const { id } = req.params;
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    res.status(404).send("삭제 할수 없습니다.");
+  } else {
+    await PostMessage.findByIdAndRemove(id);
+    console.log(`${id}가 삭제되었습니다.`);
+    res.json({ meessage: "삭제 완료" });
+  }
+};
+
+export const updateLike = async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    res.status(404).send("해당 값이 없습니다.");
+  } else {
+    const post = await PostMessage.findById(id);
+    const updatedPost = await PostMessage.findByIdAndUpdate(
+      id,
+      {
+        likeCount: post.likeCount + 1,
+      },
+      { new: true }
+    );
+
     res.json(updatedPost);
   }
 };
